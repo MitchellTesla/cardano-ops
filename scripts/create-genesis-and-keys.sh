@@ -101,7 +101,7 @@ if [ -f $BYRON_GENESIS_PATH ]; then
     --k $K \
     --n-poor-addresses 0 \
     --n-delegate-addresses $NB_BFT_NODES \
-    --total-balance $((2 * $MAX_SUPPLY / 3)) \
+    --total-balance $MAX_SUPPLY \
     --delegate-share $(awk "BEGIN{print 2 / 3}") \
     --avvm-entry-count 0 \
     --avvm-entry-balance 0 \
