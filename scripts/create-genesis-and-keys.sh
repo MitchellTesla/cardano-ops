@@ -101,14 +101,15 @@ if [ -f $BYRON_GENESIS_PATH ]; then
     --k $K \
     --n-poor-addresses 0 \
     --n-delegate-addresses $NB_BFT_NODES \
-    --total-balance $(($NB_BFT_NODES * (2 * $MAX_SUPPLY) / (3 * ($NB_CORE_NODES + $UTXO_KEYS)))) \
-    --delegate-share $(awk "BEGIN{print $NB_BFT_NODES * 2 / (3 * ($NB_CORE_NODES + $UTXO_KEYS))}") \
+    --total-balance $((2 * $MAX_SUPPLY / 3)) \
+    --delegate-share $(awk "BEGIN{print 2 / 3}") \
     --avvm-entry-count 0 \
     --avvm-entry-balance 0 \
     --protocol-parameters-file byron-genesis.spec.json \
     --genesis-output-dir byron
 
   cardano-cli byron genesis print-genesis-hash --genesis-json byron/genesis.json > byron/GENHASH
+
 fi
 
 mkdir -p node-keys
