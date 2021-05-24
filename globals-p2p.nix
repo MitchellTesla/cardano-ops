@@ -10,6 +10,7 @@ pkgs: with pkgs.iohkNix.cardanoLib; with pkgs.globals; {
       pkgs.lib.recursiveUpdate
       environments.shelley_qa.nodeConfig
       {
+        PBftSignatureThreshold = 1.1;
         ShelleyGenesisFile = genesisFile;
         ShelleyGenesisHash = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./keys/GENHASH);
         ByronGenesisFile = ./keys/byron/genesis.json;

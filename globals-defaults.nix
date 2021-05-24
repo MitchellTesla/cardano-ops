@@ -65,6 +65,8 @@ in {
       stkNodes = filter (c: c.stakePool) globals.topology.coreNodes;
     in rec {
       ENVIRONMENT = globals.environmentName;
+      RELAYS = globals.relaysNew;
+      DOMAIN = globals.domain;
 
       CORE_NODES = toString (map (x: x.name) globals.topology.coreNodes);
       NB_CORE_NODES = toString (builtins.length globals.topology.coreNodes);
