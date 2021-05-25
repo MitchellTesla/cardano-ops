@@ -23,7 +23,6 @@ let
     (withModule {
       services.cardano-node = {
         asserts = true;
-        useNewTopology = true;
         package = cardanoNodeServicePkgs.cardanoNodeHaskellPackages.cardano-node.components.exes.cardano-node;
         systemdSocketActivation = mkForce false;
       };
@@ -46,6 +45,7 @@ in {
   explorer = {
     services.cardano-node = {
       package = mkForce cardano-node;
+      useNewTopology = false;
     };
   };
 
@@ -61,16 +61,6 @@ in {
     };
     services.cardano-node = {
       package = mkForce cardano-node;
-      nodeConfig = {
-        TraceConnectionManager = false;
-        TraceInboundGovernor = false;
-        TraceLedgerPeers = false;
-        TraceLocalRootPeers = false;
-        TracePeerSelection = false;
-        TracePeerSelectionActions = false;
-        TracePublicRootPeers = false;
-        TraceServer = false;
-      };
     };
   };
 
