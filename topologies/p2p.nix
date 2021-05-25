@@ -59,6 +59,19 @@ in {
       lovelacesToGiveApiKeyAuth = 10000000000;
       useByronWallet = false;
     };
+    services.cardano-node = {
+      package = mkForce cardano-node;
+      nodeConfig = {
+        TraceConnectionManager = false;
+        TraceInboundGovernor = false;
+        TraceLedgerPeers = false;
+        TraceLocalRootPeers = false;
+        TracePeerSelection = false;
+        TracePeerSelectionActions = false;
+        TracePublicRootPeers = false;
+        TraceServer = false;
+      };
+    };
   };
 
   monitoring = {
