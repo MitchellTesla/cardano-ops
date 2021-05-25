@@ -35,6 +35,7 @@ in {
   withCardanoDBExtended = true;
   withSubmitApi = false;
   withFaucet = false;
+  faucetHostname = "faucet";
   withFaucetOptions = {};
   withSmash = false;
 

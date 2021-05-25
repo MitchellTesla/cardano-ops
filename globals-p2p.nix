@@ -3,6 +3,8 @@ pkgs: with pkgs.iohkNix.cardanoLib; with pkgs.globals; {
   # This should match the name of the topology file.
   deploymentName = "p2p";
 
+  withFaucet = true;
+
   environmentConfig = rec {
     relaysNew = "relays.${domain}";
     genesisFile = ./keys/genesis.json;
@@ -19,6 +21,7 @@ pkgs: with pkgs.iohkNix.cardanoLib; with pkgs.globals; {
         TestAllegraHardForkAtEpoch = 2;
         TestMaryHardForkAtEpoch = 3;
       };
+    usePeersFromLedgerAfterSlot = 320000;
     explorerConfig = mkExplorerConfig environmentName nodeConfig;
   };
 

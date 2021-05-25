@@ -22,7 +22,7 @@ let
     (withAutoRestartEvery 6)
     (withModule {
       services.cardano-node = {
-        # asserts = true;
+        asserts = true;
         useNewTopology = true;
         package = cardanoNodeServicePkgs.cardanoNodeHaskellPackages.cardano-node.components.exes.cardano-node;
         systemdSocketActivation = mkForce false;
@@ -34,8 +34,8 @@ let
     (mkStakingPoolNodes "c" 3 "f" "P2P3" { org = "IOHK"; nodeId = 4; })
   ] ++ bftNodes);
 
-  relayNodes = regionalConnectGroupWith bftNodes (fullyConnectNodes
-    (filter (n: !(n ? stakePool)) nodes));
+  relayNodes = regionalConnectGroupWith bftNodes
+    (filter (n: !(n ? stakePool)) nodes);
 
   coreNodes = filter (n: n ? stakePool) nodes;
 
@@ -46,6 +46,18 @@ in {
   explorer = {
     services.cardano-node = {
       package = mkForce cardano-node;
+    };
+  };
+
+  "${globals.faucetHostname}" = {
+    services.cardano-faucet = {
+      anonymousAccess = false;
+      faucetLogLevel = "DEBUG";
+      secondsBetweenRequestsAnonymous = 86400;
+      secondsBetweenRequestsApiKeyAuth = 86400;
+      lovelacesToGiveAnonymous = 1000000000;
+      lovelacesToGiveApiKeyAuth = 10000000000;
+      useByronWallet = false;
     };
   };
 
