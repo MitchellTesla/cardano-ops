@@ -49,6 +49,13 @@ in {
     };
   };
 
+  smash = {
+    services.cardano-node = {
+      package = mkForce cardano-node;
+      useNewTopology = false;
+    };
+  };
+
   "${globals.faucetHostname}" = {
     services.cardano-faucet = {
       anonymousAccess = false;
