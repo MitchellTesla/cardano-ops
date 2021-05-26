@@ -73,7 +73,7 @@ in {
 
   monitoring = {
     services.monitoring-services.publicGrafana = false;
-    services.nginx.virtualHosts."monitoring.${globals.dnsZone}".locations."/p" = {
+    services.nginx.virtualHosts."monitoring.${globals.domain}".locations."/p" = {
       root = ../static/pool-metadata;
     };
   };

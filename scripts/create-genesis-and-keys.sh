@@ -112,7 +112,7 @@ for i in `seq 1 $NB_POOL_NODES`; do
     --testnet-magic $NETWORK_MAGIC
 
   METADATA="../static/pool-metadata/p/$i.json"
-  METADATA_URL="https://monitoring.$DOMAIN/p/$.json"
+  METADATA_URL="https://monitoring.$DOMAIN/p/$i.json"
   TICKER=$(jq -r '.ticker' < $METADATA)
   RELAY="$(echo "$TICKER" | tr '[:upper:]' '[:lower:]').$RELAYS"
 
